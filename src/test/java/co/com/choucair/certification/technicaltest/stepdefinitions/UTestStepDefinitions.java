@@ -26,27 +26,14 @@ public class UTestStepDefinitions {
     @When("^he search a Join Today button to initiate register's form$")
     public void heSearchAJoinTodayButtonToInitiateRegisterSForm(List<UTestData> uTestData) {
         OnStage.theActorInTheSpotlight().attemptsTo(
-                CompleteOne.FormData(
-                        uTestData.get(0).getStrName(),
-                        uTestData.get(0).getStrLastName(),
-                        uTestData.get(0).getStrEmail(),
-                        uTestData.get(0).getStrLanguage()
-                ),CompleteTwo.FormData(
-                        uTestData.get(0).getStrCity(),
-                        uTestData.get(0).getStrZipCode(),
-                        uTestData.get(0).getStrCountry()
-                ),CompleteThree.FormData(
-                        uTestData.get(0).getStrMobile()
-                        ,uTestData.get(0).getStrModel(),
-                        uTestData.get(0).getStrOperatingSystem()
-                ),CompleteFinal.FormData(
-                        uTestData.get(0).getStrPassword()
-                )
-        );
+                UserInformation.withPersonalData(uTestData),
+                AddressInformation.withLocationData(uTestData),
+                DeviceInformation.withMovileData(uTestData),
+                FinishInformation.withPassword(uTestData));
     }
 
     @Then("^he sing in on uTest with his user$")
     public void heSingInOnUTestWithHisUser(List<UTestData> uTestData) {
-        OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(Answer.toThe(uTestData.get(0).getStrFinalConfirm())));
+        OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(Answer.toThe(uTestData)));
     }
 }
