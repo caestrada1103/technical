@@ -23,8 +23,8 @@ public class UTestStepDefinitions {
         OnStage.theActorCalled("Fernando").wasAbleTo(OpenUp.thePage());
     }
 
-    @When("^he search a Join Today button to initiate register's form$")
-    public void heSearchAJoinTodayButtonToInitiateRegisterSForm(List<UTestData> uTestData) {
+    @When("^he initiate register's form$")
+    public void heInitiateRegisterSForm(List<UTestData> uTestData) {
         OnStage.theActorInTheSpotlight().attemptsTo(
                 UserInformation.withPersonalData(uTestData),
                 AddressInformation.withLocationData(uTestData),
